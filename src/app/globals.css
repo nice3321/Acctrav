@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Acctrav design system — Traveliun identity
+   Palette is taken from the brand mark: deep pine green ground, mint sign.
+   Motion follows Apple's fluid-interface rules: springs, not durations;
+   feedback on press, not release; every surface honours reduced motion.
+   ========================================================================== */
+
+/* Brand ramp derived from the official artwork: the mark's ground is #185045 and
+   its counter-form is #A2B9B4 — both sampled from traveliun-bot-avatar.png. */
+@theme inline {
+  --font-sans: var(--font-qomra), var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-num: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --color-brand-50:  #EFF4F2;
+  --color-brand-100: #D3E0DB;
+  --color-brand-200: #A2B9B4;
+  --color-brand-300: #7BA098;
+  --color-brand-400: #4E8375;
+  --color-brand-500: #2C6A5B;
+  --color-brand-600: #1F5B4E;
+  --color-brand-700: #185045;
+  --color-brand-800: #134139;
+  --color-brand-900: #0E332C;
+  --color-brand-950: #08211D;
+}
+
+:root {
+  /* --- brand ramp (raw, for gradients and svg) --- */
+  --brand-50:#EFF4F2; --brand-100:#D3E0DB; --brand-200:#A2B9B4; --brand-300:#7BA098;
+  --brand-400:#4E8375; --brand-500:#2C6A5B; --brand-600:#1F5B4E; --brand-700:#185045;
+  --brand-800:#134139; --brand-900:#0E332C; --brand-950:#08211D;
+
+  /* --- surfaces --- */
+  --bg:#F4F7F5;
+  --bg-sunk:#E9EEEB;
+  --surface:#FFFFFF;
+  --surface-2:#F7FAF8;
+  --chrome:rgba(255,255,255,.72);
+  --chrome-solid:#FFFFFF;
+  --scrim:rgba(12,38,33,.38);
+
+  /* --- ink --- */
+  --ink:#10231F;
+  --text:#33443F;
+  --text-2:#63756F;
+  --text-3:#9AA9A3;
+
+  --border:rgba(16,35,31,.10);
+  --border-2:rgba(16,35,31,.06);
+
+  /* --- accents --- */
+  --accent:var(--brand-700);
+  --accent-ink:var(--brand-700);
+  --accent-tint:rgba(24,80,69,.09);
+  --accent-tint-2:rgba(24,80,69,.17);
+
+  --positive:#1B7A4B; --positive-vivid:#22A05F; --positive-tint:rgba(34,160,95,.12);
+  --negative:#B3372B; --negative-vivid:#D6483A; --negative-tint:rgba(214,72,58,.11);
+  --caution:#9A6212;  --caution-vivid:#D08A2C; --caution-tint:rgba(208,138,44,.14);
+  --info:#2E6DA6;     --info-tint:rgba(46,109,166,.12);
+
+  --shadow-xs:0 1px 2px rgba(12,38,33,.05);
+  --shadow-sm:0 1px 3px rgba(12,38,33,.05), 0 4px 14px rgba(12,38,33,.045);
+  --shadow-md:0 2px 6px rgba(12,38,33,.06), 0 12px 32px rgba(12,38,33,.08);
+  --shadow-lg:0 10px 28px rgba(12,38,33,.14), 0 32px 76px rgba(12,38,33,.18);
+
+  --r-sm:8px; --r:12px; --r-lg:16px; --r-xl:22px;
+  --sidebar-w:262px;
+
+  /* Apple's sheet curve — the closest CSS gets to a critically damped spring. */
+  --ease:cubic-bezier(.32,.72,0,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+/* Dark: redefine ONLY the tokens, never the rules that use them. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0A1614; --bg-sunk:#060F0E;
+    --surface:#132320; --surface-2:#1A2E2A;
+    --chrome:rgba(19,35,32,.70); --chrome-solid:#132320;
+    --scrim:rgba(0,0,0,.55);
+    --ink:#EAF2EE; --text:#D3E0DA; --text-2:#8FA39C; --text-3:#5A6D67;
+    --border:rgba(255,255,255,.10); --border-2:rgba(255,255,255,.055);
+    --accent:var(--brand-300); --accent-ink:var(--brand-200);
+    --accent-tint:rgba(127,187,168,.14); --accent-tint-2:rgba(127,187,168,.24);
+    --positive:#3ECC80; --positive-tint:rgba(62,204,128,.15);
+    --negative:#FF6B5C; --negative-tint:rgba(255,107,92,.15);
+    --caution:#E9A749; --caution-tint:rgba(233,167,73,.15);
+    --info:#6CB2E8; --info-tint:rgba(108,178,232,.15);
+    --shadow-xs:0 1px 2px rgba(0,0,0,.4);
+    --shadow-sm:0 1px 3px rgba(0,0,0,.45), 0 4px 14px rgba(0,0,0,.35);
+    --shadow-md:0 2px 6px rgba(0,0,0,.5), 0 12px 32px rgba(0,0,0,.45);
+    --shadow-lg:0 10px 28px rgba(0,0,0,.55), 0 32px 76px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0A1614; --bg-sunk:#060F0E;
+  --surface:#132320; --surface-2:#1A2E2A;
+  --chrome:rgba(19,35,32,.70); --chrome-solid:#132320;
+  --scrim:rgba(0,0,0,.55);
+  --ink:#EAF2EE; --text:#D3E0DA; --text-2:#8FA39C; --text-3:#5A6D67;
+  --border:rgba(255,255,255,.10); --border-2:rgba(255,255,255,.055);
+  --accent:var(--brand-300); --accent-ink:var(--brand-200);
+  --accent-tint:rgba(127,187,168,.14); --accent-tint-2:rgba(127,187,168,.24);
+  --positive:#3ECC80; --positive-tint:rgba(62,204,128,.15);
+  --negative:#FF6B5C; --negative-tint:rgba(255,107,92,.15);
+  --caution:#E9A749; --caution-tint:rgba(233,167,73,.15);
+  --info:#6CB2E8; --info-tint:rgba(108,178,232,.15);
+  --shadow-xs:0 1px 2px rgba(0,0,0,.4);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.45), 0 4px 14px rgba(0,0,0,.35);
+  --shadow-md:0 2px 6px rgba(0,0,0,.5), 0 12px 32px rgba(0,0,0,.45);
+  --shadow-lg:0 10px 28px rgba(0,0,0,.55), 0 32px 76px rgba(0,0,0,.6);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-sans);
+  font-size:13.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* Apple typography: tracking is size-specific — tighten as type grows. */
+h1,h2,h3,h4 { color:var(--ink); font-weight:700; }
+h1 { font-size:1.35rem; line-height:1.25; letter-spacing:-.018em; }
+h2 { font-size:1.05rem; line-height:1.3;  letter-spacing:-.012em; }
+h3 { font-size:.94rem;  line-height:1.35; letter-spacing:-.008em; }
+.display { font-size:clamp(1.6rem,4vw,2.4rem); line-height:1.1; letter-spacing:-.028em; }
+small, .fine { letter-spacing:.006em; }
+
+button, input, select, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; background:none; border:none; }
+a { color:var(--accent); text-decoration:none; }
+::selection { background:var(--accent-tint-2); }
+
+/* Money is set in Plex, not Qomra: figures must line up digit-for-digit down a
+   column, and only Plex ships the tabular-numeral feature. */
+.num {
+  font-family:var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  font-variant-numeric:tabular-nums lining-nums;
+  font-feature-settings:"tnum";
+}
+.ltr { direction:ltr; unicode-bidi:embed; }
+
+::-webkit-scrollbar { width:9px; height:9px; }
+::-webkit-scrollbar-thumb { background:var(--text-3); border-radius:8px; border:2.5px solid transparent; background-clip:content-box; }
+::-webkit-scrollbar-thumb:hover { background:var(--text-2); }
+::-webkit-scrollbar-track { background:transparent; }
+
+:focus-visible { outline:2.5px solid var(--accent); outline-offset:2px; border-radius:6px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline:none; }
+
+/* --------------------------- primitives --------------------------- */
+
+.card {
+  background:var(--surface);
+  border:1px solid var(--border-2);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow-sm);
+  padding:20px;
+}
+.card-flush { padding:0; overflow:hidden; }
+
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:7px;
+  padding:9px 16px; border-radius:11px; font-size:12.5px; font-weight:600;
+  background:var(--surface); color:var(--ink);
+  border:1px solid var(--border); box-shadow:var(--shadow-xs);
+  /* Feedback lives on the press, and it is instant. */
+  transition:transform .12s var(--ease), background .16s, opacity .16s, box-shadow .2s;
+  white-space:nowrap; user-select:none;
+}
+.btn:hover { background:var(--surface-2); }
+.btn:active { transform:scale(.965); }
+.btn:disabled { opacity:.45; pointer-events:none; }
+.btn-primary {
+  background:var(--brand-600); border-color:transparent; color:#fff;
+  box-shadow:0 4px 14px rgba(38,96,85,.28), inset 0 1px 0 rgba(255,255,255,.14);
+}
+.btn-primary:hover { background:var(--brand-500); }
+.btn-positive { background:var(--positive-vivid); border-color:transparent; color:#fff; }
+.btn-positive:hover { filter:brightness(1.06); background:var(--positive-vivid); }
+.btn-danger { background:var(--negative-tint); border-color:transparent; color:var(--negative); box-shadow:none; }
+.btn-danger:hover { background:var(--negative-vivid); color:#fff; }
+.btn-ghost { background:transparent; box-shadow:none; }
+.btn-ghost:hover { background:var(--accent-tint); }
+.btn-sm { padding:6px 12px; font-size:11.5px; border-radius:9px; }
+.btn-xs { padding:3.5px 9px; font-size:10.5px; border-radius:8px; gap:5px; }
+
+.pill {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:2.5px 10px; border-radius:99px; font-size:10.5px; font-weight:700; line-height:1.6;
+}
+.pill-neutral { background:var(--surface-2); color:var(--text-2); border:1px solid var(--border-2); }
+.pill-accent  { background:var(--accent-tint); color:var(--accent-ink); }
+.pill-positive{ background:var(--positive-tint); color:var(--positive); }
+.pill-negative{ background:var(--negative-tint); color:var(--negative); }
+.pill-caution { background:var(--caution-tint); color:var(--caution); }
+.pill-info    { background:var(--info-tint); color:var(--info); }
+.dot { width:6px; height:6px; border-radius:50%; background:currentColor; flex:none; }
+
+.field { display:flex; flex-direction:column; gap:5px; }
+.field > label { font-size:11.5px; font-weight:600; color:var(--text-2); }
+input[type=text], input[type=password], input[type=number], input[type=date],
+input[type=month], input[type=search], select, textarea {
+  width:100%; padding:9px 13px; border:1px solid var(--border); border-radius:10px;
+  background:var(--surface); color:var(--ink); font-size:13px;
+  transition:border-color .18s, box-shadow .18s;
+  appearance:none; -webkit-appearance:none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color:var(--accent); box-shadow:0 0 0 3.5px var(--accent-tint-2);
+}
+input::placeholder, textarea::placeholder { color:var(--text-3); }
+select {
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2363756F' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:left 12px center; padding-left:32px;
+}
+
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+thead th {
+  text-align:start; font-size:10.8px; font-weight:600; color:var(--text-2);
+  padding:10px 14px; background:var(--surface-2);
+  border-bottom:1px solid var(--border-2); white-space:nowrap;
+}
+tbody td { padding:10.5px 14px; border-bottom:1px solid var(--border-2); vertical-align:middle; }
+tbody tr:last-child td { border-bottom:none; }
+tbody tr { transition:background .14s ease; }
+tbody tr:hover { background:var(--accent-tint); }
+tr.total-row { background:var(--surface-2); font-weight:700; }
+tr.total-row:hover { background:var(--surface-2); }
+.table-wrap { overflow-x:auto; border-radius:var(--r); border:1px solid var(--border-2); background:var(--surface); }
+
+.alert { display:flex; gap:11px; padding:13px 15px; border-radius:var(--r); font-size:12.5px; line-height:1.7; align-items:flex-start; }
+.alert-info { background:var(--info-tint); color:var(--info); }
+.alert-caution { background:var(--caution-tint); color:var(--caution); }
+.alert-negative { background:var(--negative-tint); color:var(--negative); }
+.alert-positive { background:var(--positive-tint); color:var(--positive); }
+
+.empty { padding:44px 20px; text-align:center; color:var(--text-2); }
+.empty b { display:block; color:var(--ink); font-size:14px; margin-bottom:4px; }
+.empty p { font-size:12px; max-width:380px; margin:0 auto; line-height:1.8; }
+
+.bar-track { height:7px; background:var(--bg-sunk); border-radius:99px; overflow:hidden; flex:1; }
+.bar-fill  { height:100%; border-radius:99px; background:var(--brand-500); }
+
+/* Theme toggle glyph: shows the theme you would switch TO, driven purely by CSS so
+   there is no client state to hydrate and no wrong-icon flash on first paint. */
+.theme-glyph-sun { display: none; }
+.theme-glyph-moon { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-glyph-sun { display: inline; }
+  :root:not([data-theme="light"]) .theme-glyph-moon { display: none; }
+}
+:root[data-theme="dark"] .theme-glyph-sun { display: inline; }
+:root[data-theme="dark"] .theme-glyph-moon { display: none; }
+:root[data-theme="light"] .theme-glyph-sun { display: none; }
+:root[data-theme="light"] .theme-glyph-moon { display: inline; }
+
+/* Translucent chrome — content scrolls under it, it does not own a solid strip. */
+.chrome {
+  background:var(--chrome);
+  backdrop-filter:blur(30px) saturate(180%);
+  -webkit-backdrop-filter:blur(30px) saturate(180%);
+}
+
+/* --------------------------- accessibility --------------------------- */
+
+/* Reduced motion means a gentler equivalent, not a dead interface: colour and
+   opacity feedback stay, only the vestibular movement goes. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important; scroll-behavior:auto !important;
+  }
+  .btn:active { transform:none; opacity:.7; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .chrome { background:var(--chrome-solid); backdrop-filter:none; -webkit-backdrop-filter:none; }
+}
+@media (prefers-contrast: more) {
+  :root { --border:rgba(16,35,31,.34); --border-2:rgba(16,35,31,.22); --text-2:#40524C; }
+  .card { border-color:var(--border); }
+}
+
+@media print {
+  body { background:#fff; font-size:11.5px; }
+  .no-print { display:none !important; }
+  .card { box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+  .print-block { break-inside:avoid; }
+  .page-break { break-before:page; }
+  tbody tr:hover { background:transparent; }
+}

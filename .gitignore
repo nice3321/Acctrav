@@ -1,0 +1,34 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# --- NEVER COMMIT: live ledger and secrets ---------------------------------
+# The database holds password hashes and real payout figures. Rebuild it with
+# `npm run setup` instead of sharing the file.
+/data/
+*.db
+*.db-shm
+*.db-wal
+
+# Generated account passwords, handed out once then deleted.
+credentials.local.txt
+.env
+.env.*
+!.env.example
+
+# misc
+.DS_Store
+*.pem
+/coverage
+.vercel
+
+# The company's real reports — staff earnings and revenue. Local only.
+scripts/seed-source.json
