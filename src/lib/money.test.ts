@@ -4,7 +4,7 @@ import { allocateByWeight, applyRate, formatHalalas, sarToHalalas, shareBp, sum 
 describe("sarToHalalas", () => {
   it("converts whole and fractional riyals exactly", () => {
     expect(sarToHalalas(1)).toBe(100);
-    expect(sarToHalalas(13234.08)).toBe(1323408);
+    expect(sarToHalalas(42817.35)).toBe(4281735);
     expect(sarToHalalas("1,695.00")).toBe(169500);
     expect(sarToHalalas(0)).toBe(0);
   });
