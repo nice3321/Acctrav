@@ -26,7 +26,9 @@ const force = process.argv.includes("--force");
  *                      fresh clone still boots into a working system.
  * The real file wins when it is present.
  */
-const REAL = resolve(HERE, "seed-source.json");
+// ACCTRAV_SEED lets a deployment point at real data mounted outside the image —
+// the real file is never baked into a container or pushed to a repo.
+const REAL = resolve(process.env.ACCTRAV_SEED ?? resolve(HERE, "seed-source.json"));
 const DEMO = resolve(HERE, "seed-demo.json");
 const sourcePath = existsSync(REAL) ? REAL : DEMO;
 const usingReal = sourcePath === REAL;
@@ -246,7 +248,9 @@ try {
     for (const c of rows) lines.push(`  ${c.username.padEnd(22)} ${c.password}   (${c.displayName})`);
     lines.push("");
   }
-  const credPath = resolve(HERE, "../credentials.local.txt");
+  // On a server the app directory is read-only and ephemeral, so the credentials
+  // land next to the database on the persistent volume instead.
+  const credPath = resolve(process.env.ACCTRAV_CREDENTIALS ?? resolve(HERE, "../credentials.local.txt"));
   writeFileSync(credPath, lines.join("\n"), "utf8");
 
   console.log(`✓ تم البذر بنجاح — المصدر: ${usingReal ? "بيانات الشركة الفعلية" : "بيانات تجريبية (seed-demo.json)"}`);

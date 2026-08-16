@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+
+# Never bake real data or secrets into an image layer.
+data
+*.db
+credentials.local.txt
+scripts/seed-source.json
+.env
+.env.*
